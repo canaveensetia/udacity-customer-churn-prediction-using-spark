@@ -50,3 +50,15 @@ Finally, post feature scaling, Logistic Regression and Random Forest Model were 
 **Test:** Area Under ROC 0.8428030303030303
 
 **Test:** Area Under PR 0.7930118994150303
+
+# Medium Blog Link
+
+https://medium.com/@setia.naveen/33dce920f7ce
+
+# Reference(s)/Credit(s)
+
+https://en.wikipedia.org/wiki/Customer_attrition
+
+https://spark.apache.org/docs/latest/ml-classification-regression.html#random-forest-classifier
+
+https://spark.apache.org/docs/latest/ml-classification-regression.html#binomial-logistic-regression
