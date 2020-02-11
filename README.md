@@ -15,7 +15,7 @@ Every log entry includes the service page user interacted with ('next song', 'th
 
 ## Features
 
-- We added quite a few features to build the model 
+We added quite a few features to build the model 
 
 **Thumbs Up:** The average number of 'thumbs up' given per song
 
@@ -33,7 +33,9 @@ Created a target variable churn whose probability will be predicted.
 
 ## Prediction model
 
-Post creation of feature dataset and a target variable, we split the dataset in train, validation and test parts. Finally, post feature scaling, Logistic Regression and Random Forest Model were trained. Random Forest Classifier worked better on relative basis.
+Post creation of feature dataset and a target variable, we split the dataset in train, validation and test parts. 
+
+Finally, post feature scaling, Logistic Regression and Random Forest Model were trained. Random Forest Classifier worked better on relative basis.
 
 ## Results:
 
