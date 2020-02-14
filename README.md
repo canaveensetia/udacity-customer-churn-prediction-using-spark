@@ -1,13 +1,29 @@
 # Project Overview
 
-The project purpose is to build a customer churn prediciton model. We analyzed user interactions with a fictious "sparkify" audio streaming service. 
+I got an opportunity to work on the customer churn problem which is the final project of the “Udacity Data Science Nanodegree program”. We have been provided a virtual company called ‘Sparkify’ which is a music app and it offers paid and free listening service. The customer can switch between either service or they can cancel their subscription at any time.
 
-Based on a history of user actions, the model has to predict whether is is likely that the user will churn or not.
+This provided dataset contains two months of ‘Sparkify’ user behavior log. The log contains some 
+basic information about the user as well as information about a single action.
 
-# Dataset Overview
+The given dataset is large i.e. 12GB, thus the typical tools for analysis and machine learning will not be useful here as it will not fit in the most of the local computer’s memory. The ideal and safe way to perform such analysis is to do it using Big Data tools like Apache Spark.
+
+
+## Why Apache Spark?
+
+As mentioned above, provided dataset shared as part of this project is over 12GB so it is virtually impossible to load this into a typical development machine.
+The Spark distributed analysis capability makes it relatively easy to handle these large datasets and reduce the time it takes to analyze the data and train models.
+
+## How to save costs?
+As highlighted above, it is not possible to load over 12GB in a typical local development machine. So, we can use a subset of data to explore and build a model in a local development environment.
+Once it is fully tested it can be used in a cloud-based development (e.g. on Amazon AWS, Microsoft Azure, etc.) environment to run the script on full 12GB data.
+
+## What is the outcome of the project?
+As highlighted above, the business ask is to predict whether a customer will churn or not.
+From the machine learning perspective, it is a binary classification problem i.e. a binary outcome whether a customer will churn or not.
+
+## Dataset Overview
 
 Provided data set is of 12GB describing user interactions with the service. The data is avaliable at Udacity Amazon s3 bucket: s3n://udacity-dsnd/sparkify/sparkify_event_data.json. However, for building the script subset of provided data is used.
-
 
 Every log entry includes the service page user interacted with ('next song', 'thumbs up', 'settings', etc), user id, session id, user account level, and the timestamp.
 
@@ -43,17 +59,17 @@ Finally, post feature scaling, Logistic Regression and Random Forest Model were 
 
 **Train:** Area Under PR 0.9942257534428728
 
-**Validation:** Area Under ROC 0.9523809523809523
+**Validation:** Area Under ROC 0.9047619047619048
 
-**Validation:** Area Under PR 0.9027777777777777
+**Validation:** Area Under PR 0.8500000000000001
 
-**Test:** Area Under ROC 0.8428030303030303
+**Test:** Area Under ROC 0.8579545454545455
 
-**Test:** Area Under PR 0.7930118994150303
+**Test:** Area Under PR 0.826208854004175
 
 # Medium Blog Link
 
-https://medium.com/@setia.naveen/33dce920f7ce
+https://medium.com/@setia.naveen/predict-customer-churn-in-a-distributed-way-using-spark-33dce920f7ce
 
 # Reference(s)/Credit(s)
 

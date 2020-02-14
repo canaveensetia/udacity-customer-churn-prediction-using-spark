@@ -13957,7 +13957,7 @@ only showing top 1 row
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;seaborn.axisgrid.PairGrid at 0x7f658ea4e390&gt;</pre>
+<pre>&lt;seaborn.axisgrid.PairGrid at 0x7f9b0fe7b400&gt;</pre>
 </div>
 
 </div>
@@ -14006,7 +14006,7 @@ only showing top 1 row
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f658b8ac2e8&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f9b0d1ed208&gt;</pre>
 </div>
 
 </div>
@@ -14055,7 +14055,7 @@ only showing top 1 row
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f658bfa87f0&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f9b0cd26828&gt;</pre>
 </div>
 
 </div>
@@ -14104,7 +14104,7 @@ only showing top 1 row
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f658b8b5be0&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f9b0c16aef0&gt;</pre>
 </div>
 
 </div>
@@ -14152,7 +14152,7 @@ only showing top 1 row
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f6589cd42e8&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f9b0c0c5208&gt;</pre>
 </div>
 
 </div>
@@ -14201,7 +14201,7 @@ only showing top 1 row
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f6589c00da0&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f9b0c068048&gt;</pre>
 </div>
 
 </div>
@@ -14441,10 +14441,13 @@ only showing top 20 rows
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">evaluate_performance</span><span class="p">(</span><span class="n">trained_model</span><span class="p">,</span><span class="n">train</span><span class="p">,</span><span class="n">validation</span><span class="p">,</span><span class="n">test</span><span class="p">,</span><span class="n">evaluator</span><span class="p">):</span>    
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="k">def</span> <span class="nf">evaluate_performance</span><span class="p">(</span><span class="n">trained_model</span><span class="p">,</span><span class="n">train</span><span class="p">,</span><span class="n">validation</span><span class="p">,</span><span class="n">test</span><span class="p">,</span><span class="n">evaluator</span><span class="p">):</span>    
     <span class="c1"># Test the performance via evaluator on training data</span>
     <span class="n">predictions</span> <span class="o">=</span> <span class="n">trained_model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">train</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Train: Area Under ROC&#39;</span><span class="p">,</span> <span class="n">evaluator</span><span class="o">.</span><span class="n">setMetricName</span><span class="p">(</span><span class="s2">&quot;areaUnderROC&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">predictions</span><span class="p">))</span>
@@ -14459,6 +14462,33 @@ only showing top 20 rows
     <span class="n">predictions</span> <span class="o">=</span> <span class="n">trained_model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Test: Area Under ROC&#39;</span><span class="p">,</span> <span class="n">evaluator</span><span class="o">.</span><span class="n">setMetricName</span><span class="p">(</span><span class="s2">&quot;areaUnderROC&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">predictions</span><span class="p">))</span>
     <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Test: Area Under PR&#39;</span><span class="p">,</span> <span class="n">evaluator</span><span class="o">.</span><span class="n">setMetricName</span><span class="p">(</span><span class="s2">&quot;areaUnderPR&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">predictions</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">get_classifier_metrics</span><span class="p">(</span><span class="n">trained_model</span><span class="p">,</span> <span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="n">validation</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    </span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">get_metrics</span><span class="p">(</span><span class="n">trained_model</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">        </span>
+<span class="sd">        &#39;&#39;&#39;</span>
+        <span class="n">label_and_prediction</span> <span class="o">=</span> <span class="n">trained_model</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="s1">&#39;label&#39;</span><span class="p">,</span> <span class="s1">&#39;prediction&#39;</span><span class="p">)</span>
+        <span class="n">true_positives</span> <span class="o">=</span> <span class="n">label_and_prediction</span><span class="o">.</span><span class="n">filter</span><span class="p">((</span><span class="n">label_and_prediction</span><span class="o">.</span><span class="n">prediction</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="o">&amp;</span> <span class="p">(</span><span class="n">label_and_prediction</span><span class="o">.</span><span class="n">label</span> <span class="o">==</span> <span class="n">label_and_prediction</span><span class="o">.</span><span class="n">prediction</span><span class="p">)</span> <span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+        <span class="n">true_negatives</span> <span class="o">=</span> <span class="n">label_and_prediction</span><span class="o">.</span><span class="n">filter</span><span class="p">((</span><span class="n">label_and_prediction</span><span class="o">.</span><span class="n">prediction</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="o">&amp;</span> <span class="p">(</span><span class="n">label_and_prediction</span><span class="o">.</span><span class="n">label</span> <span class="o">==</span> <span class="n">label_and_prediction</span><span class="o">.</span><span class="n">prediction</span><span class="p">)</span> <span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+        <span class="n">false_positives</span> <span class="o">=</span> <span class="n">label_and_prediction</span><span class="o">.</span><span class="n">filter</span><span class="p">((</span><span class="n">label_and_prediction</span><span class="o">.</span><span class="n">prediction</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="o">&amp;</span> <span class="p">(</span><span class="n">label_and_prediction</span><span class="o">.</span><span class="n">label</span> <span class="o">!=</span> <span class="n">label_and_prediction</span><span class="o">.</span><span class="n">prediction</span><span class="p">)</span> <span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+        <span class="n">false_negatives</span> <span class="o">=</span> <span class="n">label_and_prediction</span><span class="o">.</span><span class="n">filter</span><span class="p">((</span><span class="n">label_and_prediction</span><span class="o">.</span><span class="n">prediction</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span><span class="o">&amp;</span> <span class="p">(</span><span class="n">label_and_prediction</span><span class="o">.</span><span class="n">label</span> <span class="o">!=</span> <span class="n">label_and_prediction</span><span class="o">.</span><span class="n">prediction</span><span class="p">)</span> <span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+        <span class="n">accuracy</span> <span class="o">=</span> <span class="n">label_and_prediction</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">label_and_prediction</span><span class="o">.</span><span class="n">label</span> <span class="o">==</span> <span class="n">label_and_prediction</span><span class="o">.</span><span class="n">prediction</span><span class="p">)</span><span class="o">.</span><span class="n">count</span><span class="p">()</span><span class="o">/</span><span class="n">label_and_prediction</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+        <span class="n">precision</span> <span class="o">=</span> <span class="n">true_positives</span><span class="o">/</span><span class="p">(</span><span class="n">true_positives</span><span class="o">+</span><span class="n">false_positives</span><span class="p">)</span>
+        <span class="n">recall</span> <span class="o">=</span> <span class="n">true_positives</span><span class="o">/</span><span class="p">(</span><span class="n">true_positives</span><span class="o">+</span><span class="n">false_negatives</span><span class="p">)</span>
+        <span class="n">f1score</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">precision</span> <span class="o">*</span> <span class="n">recall</span> <span class="o">/</span> <span class="p">(</span><span class="n">precision</span> <span class="o">+</span> <span class="n">recall</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">accuracy</span><span class="p">,</span> <span class="n">precision</span><span class="p">,</span> <span class="n">recall</span><span class="p">,</span> <span class="n">f1score</span>
+    <span class="n">train_metrics</span> <span class="o">=</span> <span class="n">get_metrics</span><span class="p">(</span><span class="n">trained_model</span><span class="p">,</span> <span class="n">train</span><span class="p">)</span>
+    <span class="n">validation_metrics</span> <span class="o">=</span> <span class="n">get_metrics</span><span class="p">(</span><span class="n">trained_model</span><span class="p">,</span><span class="n">validation</span><span class="p">)</span>
+    <span class="n">test_metrics</span> <span class="o">=</span> <span class="n">get_metrics</span><span class="p">(</span><span class="n">trained_model</span><span class="p">,</span> <span class="n">test</span><span class="p">)</span>
+    
+    <span class="n">labels</span> <span class="o">=</span><span class="p">[</span><span class="s1">&#39;Train&#39;</span><span class="p">,</span> <span class="s1">&#39;Validation&#39;</span><span class="p">,</span><span class="s1">&#39;Test&#39;</span><span class="p">]</span>
+    <span class="n">metrics_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">,</span> <span class="s1">&#39;Precision&#39;</span><span class="p">,</span> <span class="s1">&#39;Recall&#39;</span><span class="p">,</span> <span class="s1">&#39;F-Score&#39;</span><span class="p">]</span>
+    <span class="n">metrics_data</span> <span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">train_metrics</span><span class="p">,</span> <span class="n">validation_metrics</span><span class="p">,</span> <span class="n">test_metrics</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">metrics_data</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">labels</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">metrics_names</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -14516,12 +14546,12 @@ only showing top 20 rows
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Train: Area Under ROC 0.9992559523809524
-Train: Area Under PR 0.997141599147907
-Validation: Area Under ROC 0.8571428571428571
-Validation: Area Under PR 0.711111111111111
-Test: Area Under ROC 0.8825757575757576
-Test: Area Under PR 0.8304910449432761
+<pre>Train: Area Under ROC 0.9982638888888888
+Train: Area Under PR 0.9931084034611481
+Validation: Area Under ROC 0.9047619047619048
+Validation: Area Under PR 0.8500000000000001
+Test: Area Under ROC 0.8863636363636364
+Test: Area Under PR 0.840636233892813
 </pre>
 </div>
 </div>
@@ -14532,7 +14562,89 @@ Test: Area Under PR 0.8304910449432761
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[50]:</div>
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">get_classifier_metrics</span><span class="p">(</span><span class="n">trained_model</span><span class="p">,</span><span class="n">train</span><span class="p">,</span><span class="n">validation</span><span class="p">,</span><span class="n">test</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[54]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Train</th>
+      <th>Validation</th>
+      <th>Test</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Accuracy</th>
+      <td>0.981013</td>
+      <td>0.852941</td>
+      <td>0.800000</td>
+    </tr>
+    <tr>
+      <th>Precision</th>
+      <td>0.967742</td>
+      <td>0.888889</td>
+      <td>0.666667</td>
+    </tr>
+    <tr>
+      <th>Recall</th>
+      <td>0.937500</td>
+      <td>0.666667</td>
+      <td>0.666667</td>
+    </tr>
+    <tr>
+      <th>F-Score</th>
+      <td>0.952381</td>
+      <td>0.761905</td>
+      <td>0.666667</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[55]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">trained_model</span><span class="o">.</span><span class="n">coefficients</span> <span class="k">if</span> <span class="n">relevant_model_class</span> <span class="o">==</span> <span class="s1">&#39;LogisticRegression&#39;</span> <span class="k">else</span> <span class="n">trained_model</span><span class="o">.</span><span class="n">featureImportances</span>
@@ -14548,13 +14660,13 @@ Test: Area Under PR 0.8304910449432761
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[50]:</div>
+    <div class="prompt output_prompt">Out[55]:</div>
 
 
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>SparseVector(5, {0: 0.1857, 1: 0.0724, 2: 0.1761, 3: 0.4154, 4: 0.1503})</pre>
+<pre>SparseVector(5, {0: 0.2149, 1: 0.062, 2: 0.1681, 3: 0.4368, 4: 0.1183})</pre>
 </div>
 
 </div>
@@ -14565,7 +14677,7 @@ Test: Area Under PR 0.8304910449432761
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[51]:</div>
+<div class="prompt input_prompt">In&nbsp;[56]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Run through a cross validator</span>
@@ -14585,7 +14697,7 @@ Test: Area Under PR 0.8304910449432761
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[52]:</div>
+<div class="prompt input_prompt">In&nbsp;[57]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">evaluate_performance</span><span class="p">(</span><span class="n">trained_model</span><span class="p">,</span><span class="n">train</span><span class="p">,</span><span class="n">validation</span><span class="p">,</span><span class="n">test</span><span class="p">,</span><span class="n">evaluator</span><span class="p">)</span>
@@ -14605,12 +14717,12 @@ Test: Area Under PR 0.8304910449432761
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Train: Area Under ROC 0.998015873015873
-Train: Area Under PR 0.9923984147709038
+<pre>Train: Area Under ROC 0.9985119047619048
+Train: Area Under PR 0.9942052322788821
 Validation: Area Under ROC 0.9047619047619048
 Validation: Area Under PR 0.8500000000000001
-Test: Area Under ROC 0.8598484848484849
-Test: Area Under PR 0.8339737774480421
+Test: Area Under ROC 0.8579545454545455
+Test: Area Under PR 0.826208854004175
 </pre>
 </div>
 </div>
@@ -14621,7 +14733,89 @@ Test: Area Under PR 0.8339737774480421
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[53]:</div>
+<div class="prompt input_prompt">In&nbsp;[58]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">get_classifier_metrics</span><span class="p">(</span><span class="n">trained_model</span><span class="p">,</span><span class="n">train</span><span class="p">,</span><span class="n">validation</span><span class="p">,</span><span class="n">test</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[58]:</div>
+
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Train</th>
+      <th>Validation</th>
+      <th>Test</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Accuracy</th>
+      <td>0.981013</td>
+      <td>0.823529</td>
+      <td>0.800000</td>
+    </tr>
+    <tr>
+      <th>Precision</th>
+      <td>0.967742</td>
+      <td>0.875000</td>
+      <td>0.666667</td>
+    </tr>
+    <tr>
+      <th>Recall</th>
+      <td>0.937500</td>
+      <td>0.583333</td>
+      <td>0.666667</td>
+    </tr>
+    <tr>
+      <th>F-Score</th>
+      <td>0.952381</td>
+      <td>0.700000</td>
+      <td>0.666667</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># EXPERIMENTED BUT DIDN&#39;T USE</span>
